@@ -1,7 +1,7 @@
 # Strange Networks
 
 <p align="center">
-  <img src="assets/preview.png" alt="Depiction of Strange Networks animation" width="25%">
+  <img src="src/assets/Circular_Netowrk_Example.png" alt="Depiction of Strange Networks animation" width="25%">
   <br>
   <em>Figure 1. Depiction of the Strange Networks website animation showing nodes with notes and connections.</em>
 </p>
