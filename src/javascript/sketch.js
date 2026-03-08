@@ -14,18 +14,19 @@ let tzoom = 1;
 let freq = 1;
 
 function setup() {
+	console.log('setup running');
 	let dim = min(windowHeight, windowWidth);
 	createCanvas(dim * 0.9, dim * 0.9);
 	rseed = random(1000);
+	for (let j = 0; j < colors.length; j++) {
+		let ang = map(j, 0, colors.length, 0, TAU) - HALF_PI;
+		nodes.push(new Node(j % 2, j, ang));
+	}
+	i = colors.length;
 }
 
 function draw() {
 	randomSeed(rseed);
-	if (frameCount % 5 == 0 && i < colors.length) {
-		let ang = map(i, 0, colors.length, 0, TAU) - HALF_PI;
-		nodes.push(new Node(i % 2, i, ang));
-		i++;
-	} 
 	background(255);
 	translate(width / 2, height / 2);
 	zoom = lerp(zoom, tzoom, 0.1);
