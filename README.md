@@ -1,5 +1,11 @@
 # Strange Networks
 
+<p align="center">
+  <img src="assets/preview.png" alt="Depiction of Strange Networks animation" width="25%">
+  <br>
+  <em>Figure 1. Depiction of the Strange Networks website animation showing nodes with notes and connections.</em>
+</p>
+
 Strange Networks is a generative network visualization built with [p5.js](https://p5js.org/). It arranges thirty-two nodes across five spatial configurations and connects them with animated Catmull-Rom curves whose colors blend between each pair of endpoints. The result is something between a data diagram and an organism — a structure that feels like it is mapping something, without making any claims about what.
 
 The sketch was originally made for the [#WCCChallenge](https://openprocessing.org/), themed around "mapping."
