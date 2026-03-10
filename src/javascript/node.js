@@ -1,3 +1,23 @@
+/*
+ * STRANGE NETWORKS - Node Class Definition
+ * 
+ * Defines the behavior and properties of individual network nodes:
+ * - Position tracking with target-based lerping for smooth animation
+ * - Type assignment (0 or 1) for bipartite graph construction
+ * - Color assignment from palette with transparency (alpha channel)
+ * - Angular positioning using trigonometric placement
+ * - Five distinct layout modes with different spatial arrangements
+ * 
+ * Mathematical Concepts:
+ * - Angular distribution: ang = map(index, 0, total, 0, TAU) - HALF_PI
+ * - Parametric positioning: tpos.x = cos(ang) * radius, tpos.y = sin(ang) * radius
+ * - Counter-based orbit: Uses incremented counter in cos/sin for circular motion
+ * - Linear interpolation: Smooth motion using lerp(target, 0.1) each frame
+ * - Catmull-Rom phantom points: Control points calculated per-mode for curve tension
+ * 
+ * Made by Jonas Kjeldmand Jensen - March 2026
+ */
+
 class Node {
 	constructor(type, i, ang) {
 		this.pos = createVector(0, 0);

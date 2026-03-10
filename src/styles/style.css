@@ -1,3 +1,15 @@
+/*
+ * STRANGE NETWORKS - Stylesheet
+ * 
+ * Provides responsive layout configuration:
+ * - Full viewport coverage with flexbox centering
+ * - Canvas positioning and display optimization
+ * - Color scheme definition (white background)
+ * - Box model normalization for consistent rendering
+ * 
+ * Made by Jonas Kjeldmand Jensen - March 2026
+ */
+
 *,
 *::before,
 *::after {

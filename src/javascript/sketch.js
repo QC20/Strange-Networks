@@ -1,7 +1,20 @@
-// For the #WCCChallenge, theme: "mapping".
-// I took some inspiration this week from a few different network mapping diagrams found online.
-// In this sketch, the path connecting two nodes is a blend of their respective colors.
-// Colors taken from Aaron Reuland's super useful palette generator: https://openprocessing.org/sketch/2176841
+/*
+ * STRANGE NETWORKS - Main Sketch and Animation Loop
+ * 
+ * This module orchestrates the p5.js animation, managing:
+ * - Node creation and positioning using parametric equations
+ * - Layout transitions across five distinct spatial configurations
+ * - Real-time motion using trigonometric functions: sin(freq*counter) and cos(freq*counter)
+ * - Canvas transformations (translation, scaling, zoom interpolation)
+ * 
+ * Mathematical Concepts:
+ * - Circular motion: Uses TAU (2π) to distribute nodes around a circle
+ * - Lerp interpolation: position.lerp(target, 0.1) creates smooth easing transitions
+ * - Catmull-Rom curves: Phantom control points shape edge paths without passing through them
+ * - Color interpolation: lerpColor() blends between node colors at 0.5 midpoint for edges
+ * 
+ * Made by Jonas Kjeldmand Jensen - March 2026
+ */
 
 let nodes = [];
 let colors = ["#0a0d02BB", "#922301BB", "#f76e0BB9", "#ead8b8BB", "#c0df80BB", "#a59b3cBB", "#86601aBB", "#013f61BB", "#07606aBB", "#0f7b9cBB", "#366a1cBB", "#eb7300BB", "#142027BB", "#47020eBB", "#884114BB", "#686963BB", "#66aecBB9", "#8ab2c0BB", "#2f3b3eBB", "#dd841f", "#0f202e", "#862534", "#116887", "#304fad", "#451c06", "#743212", "#9c400a", "#f97e01", "#929e78", "#13b2bc", "#0c8194", "#0c8194"]
