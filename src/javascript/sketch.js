@@ -19,6 +19,7 @@
 let nodes = [];
 let colors = ["#0a0d02BB", "#922301BB", "#f76e0BB9", "#ead8b8BB", "#c0df80BB", "#a59b3cBB", "#86601aBB", "#013f61BB", "#07606aBB", "#0f7b9cBB", "#366a1cBB", "#eb7300BB", "#142027BB", "#47020eBB", "#884114BB", "#686963BB", "#66aecBB9", "#8ab2c0BB", "#2f3b3eBB", "#dd841f", "#0f202e", "#862534", "#116887", "#304fad", "#451c06", "#743212", "#9c400a", "#f97e01", "#929e78", "#13b2bc", "#0c8194", "#0c8194"]
 let mode = 0;
+let anyHovered = false;
 let i = 0;
 let moving = true;
 let rseed;
@@ -45,11 +46,10 @@ function draw() {
 	zoom = lerp(zoom, tzoom, 0.1);
 	push();
 	scale(zoom);
-	for (let n of nodes) {
-		n.show();
-		n.connect();
-		n.arrange();
-	}
+	for (let n of nodes) n.show();
+	anyHovered = nodes.some(n => n.hovered);
+	for (let n of nodes) n.connect();
+	for (let n of nodes) n.arrange();
 	pop();
 	fill(0, 80);
 	noStroke();

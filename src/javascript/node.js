@@ -27,13 +27,23 @@ class Node {
 		this.col = color(colors[i]);
 		this.ang = ang;
 		this.counter = map(i, 0, colors.length - 1, 0, TAU);
+		this.hovered = false;
 	}
 	show() {
 		this.pos.lerp(this.tpos, 0.1);
+		let mx = (mouseX - width / 2) / zoom;
+		let my = (mouseY - height / 2) / zoom;
+		this.hovered = dist(mx, my, this.pos.x, this.pos.y) < height / 20;
 		push();
 		translate(this.pos);
+		if (this.hovered) {
+			noFill();
+			stroke(this.col);
+			strokeWeight(1.5);
+			ellipse(0, 0, height / 28);
+		}
 		noStroke();
-		fill(this.col)
+		fill(this.col);
 		ellipse(0, 0, height / 72);
 		pop();
 	}
@@ -61,14 +71,34 @@ class Node {
 				this.tpos.y = random(-0.35 * height, 0.35 * height) + (height / 12) * sin(freq*this.counter);
 				break;
 		}
+		// Mouse repulsion: nodes scatter away from the cursor
+		let mx = (mouseX - width / 2) / zoom;
+		let my = (mouseY - height / 2) / zoom;
+		let away = createVector(this.tpos.x - mx, this.tpos.y - my);
+		let d = away.mag();
+		let repelRadius = height / 5;
+		if (d < repelRadius) {
+			away.setMag((1 - d / repelRadius) * (height / 8));
+			this.tpos.add(away);
+		}
 	}
 	connect() {
-		strokeWeight(0.5);
 		noFill();
 		if (this.type == 1) return;
 		for (let other of nodes) {
-			stroke(lerpColor(this.col, other.col, 0.5));
 			if (this.type == other.type) continue;
+			let edgeCol = lerpColor(this.col, other.col, 0.5);
+			let active = this.hovered || other.hovered;
+			if (anyHovered && !active) {
+				edgeCol.setAlpha(18);
+				strokeWeight(0.3);
+			} else if (active) {
+				edgeCol.setAlpha(230);
+				strokeWeight(1.8);
+			} else {
+				strokeWeight(0.5);
+			}
+			stroke(edgeCol);
 			switch (mode) {
 				case 0:
 					curve(cos(this.ang) * 1.5 * width, sin(this.ang) * 1.5 * width, this.pos.x, this.pos.y, other.pos.x, other.pos.y, cos(other.ang) * 1.5 * width, sin(other.ang) * 1.5 * width);
